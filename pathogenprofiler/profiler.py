@@ -3,7 +3,6 @@ from .bam import bam
 from .barcode import barcode, db_compare
 from .vcf import vcf,delly_bcf
 from .fasta import fasta
-import re
 
 
 

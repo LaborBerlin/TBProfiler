@@ -155,7 +155,7 @@ def cmd_out(cmd,verbose=1):
     else:
         stderr = open("/dev/null","w")
     try:
-        res = subprocess.Popen(cmd,shell=True,stderr = stderr,stdout=subprocess.PIPE)
+        res = subprocess.Popen(cmd.split(),stderr = stderr,stdout=subprocess.PIPE)
         for l in res.stdout:
             yield l.decode().rstrip()
     except:
@@ -241,9 +241,7 @@ def split_bed(bed_file,size,reformat=False):
             else:
                 sys.stdout.write("%s\n"%loc)
 def filecheck(filename):
-    """
-    Check if file is there and quit if it isn't
-    """
+    """Check if file is there and quit if it isn't."""
     if filename=="/dev/null":
         return filename
     elif not os.path.isfile(filename):
@@ -253,9 +251,7 @@ def filecheck(filename):
         return filename
 
 def foldercheck(filename):
-    """
-    Check if file is there and quit if it isn't
-    """
+    """Check if file is there and quit if it isn't."""
     if not os.path.isdir(filename):
         sys.stderr.write("Can't find %s\n" % filename)
         exit(1)
@@ -263,18 +259,14 @@ def foldercheck(filename):
         return filename
 
 def nofile(filename):
-    """
-    Return True if file does not exist
-    """
+    """Return True if file does not exist."""
     if not os.path.isfile(filename):
         return True
     else:
         return False
 
 def nofolder(filename):
-    """
-    Return True if file does not exist
-    """
+    """Return True if file does not exist."""
     if not os.path.isdir(filename):
         return True
     else:
@@ -314,7 +306,7 @@ def run_cmd(cmd,verbose=1,target=None,terminate_on_error=True):
     if verbose>0:
         sys.stderr.write("\nRunning command:\n%s\n" % cmd)
 
-    p = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout,stderr = p.communicate()
 
     if terminate_on_error is True and p.returncode!=0:
@@ -388,7 +380,8 @@ def file_len(filename):
     Return length of a file
     """
     filecheck(filename)
-    for l in subprocess.Popen("wc -l %s" % filename,shell=True,stdout=subprocess.PIPE).stdout:
+    cmd = "wc -l %s" % filename
+    for l in subprocess.Popen(cmd.split(),stdout=subprocess.PIPE).stdout:
         res = l.rstrip().split()[0]
     return int(res)
 
@@ -397,7 +390,8 @@ def gz_file_len(filename):
     Return lengths of a gzipped file
     """
     filecheck(filename)
-    for l in subprocess.Popen("gunzip -c %s |wc -l" % filename,shell=True,stdout=subprocess.PIPE).stdout:
+    cmd = "gunzip -c %s |wc -l" % filename
+    for l in subprocess.Popen(cmd.split(),stdout=subprocess.PIPE).stdout:
         res = l.rstrip().split()[0]
     return int(res)
 

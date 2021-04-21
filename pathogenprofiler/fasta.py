@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from .utils import *
+from .utils import run_cmd, add_arguments_to_self
 class fasta:
     """
     Class to represent fasta seuqnces in a python dict.

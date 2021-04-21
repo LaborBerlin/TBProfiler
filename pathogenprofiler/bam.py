@@ -1,15 +1,10 @@
-from .utils import add_arguments_to_self, run_cmd, cmd_out, filecheck, index_bam, nofile, rm_files, log, load_bed, median
-from .fasta import fasta
+from .utils import add_arguments_to_self, run_cmd, cmd_out, filecheck, index_bam
 from .vcf import vcf, delly_bcf
-from tqdm import tqdm
 from collections import defaultdict
-import sys
 
 
 class bam:
-    """
-    A class to perform operations on BAM files such as SNP calling
-    """
+    """A class to perform operations on BAM files such as SNP calling."""
     def __init__(self,bam_file,prefix,platform,threads=1):
         add_arguments_to_self(self, locals())
         filecheck(self.bam_file)

@@ -46,7 +46,7 @@ conda install -c bioconda tb-profiler samtools=1.9=h7c4ea83_11 ncurses=6.1=h0a44
 It is possible to install manually. The following pre-requisites will be needed at runtime: _trimmomatic \(&gt;=v0.38\), bwa \(&gt;=v0.7.17\), minimap2 \(&gt;=v2.16\), bowtie2 \(&gt;=v2.3.5\), samtools \(&gt;=v1.9\), bcftools \(&gt;=v1.9\), GATK \(&gt;=v4.1.4.0\), freebayes \(&gt;=v1.3.2\), tqdm \(&gt;=v4.32.2\) parallel \(&gt;=v20190522\) and samclip \(&gt;=v0.4.0\)_. The pipeline should work and has been tested on the program versions indicated in parentheses.
 
 To install the library run the following code:
-```
+```bash
 pip3 install git+https://github.com/jodyphelan/TBProfiler.git
 mkdir `python -c "import sys; print(getattr(sys, 'base_prefix', getattr(sys, 'real_prefix', sys.prefix)));"`
 tb-profiler update_tbdb
@@ -100,7 +100,6 @@ This will automatically create a number of colled result files from all the indi
 
 The `collate` function extracts the drug-resistance mutations and lineage, however you may want to extract more features that are present in the individual json result files. I have created a little tutorial on how to do this [here](https://jodyphelan.gitbook.io/tb-profiler/writing-a-custom-collate-script).
 
-
 ## Mutation database
 
 TBProfiler ships with a default database. The development of the mutation library is hosted on the [tbdb repository](https://github.com/jodyphelan/tbdb). Please visity this repo if you would like to get involved in the database or would like to modify and create your own.
@@ -125,9 +124,9 @@ The pipeline searches for small variants and big deletions associated with drug 
 
 Several files are produced by the `tb-profile collate` function. Among these are several config files that can be used with [iTOL](http://itol.embl.de/) to annotate phylogenetic trees. A small tree and config files have been placed in the _example\_data_ directory. To use navigate to the iTOL website and upload the _tbprofiler.tree_ file using the upload button on the navigation bar. Once this has been uploaded you will be taken to a visualisation of the tree. To add the annotation, click on the '+' button on the lower right hand corner and select the iTOL config files. You should now see a figure similar to the one below. The following annotations are included:
 
-  * Lineage
-  * Drug resistance classes \(Sensitive, drug-resistant, MDR, XDR\)
-  * Drug resistance calls for individual drugs, were filled circles represent resistance.
+*  Lineage
+*  Drug resistance classes \(Sensitive, drug-resistant, MDR, XDR\)
+*  Drug resistance calls for individual drugs, were filled circles represent resistance.
 
 ![](https://github.com/jodyphelan/jodyphelan.github.io/raw/master/img/itol_example.png)
 
@@ -145,5 +144,5 @@ Will populate this once we get some frequently asked questions!
 
 ## Future plans
 
-  * Add in capability to perform basic phylogenetic functions
-  * Add in levels of resistance to mutations
+*  Add in capability to perform basic phylogenetic functions
+*  Add in levels of resistance to mutations

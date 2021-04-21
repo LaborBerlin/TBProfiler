@@ -1,4 +1,4 @@
-from .utils import filecheck, log, run_cmd
+from .utils import log, run_cmd
 from .bam import bam
 from .barcode import barcode, db_compare
 from .vcf import vcf,delly_bcf

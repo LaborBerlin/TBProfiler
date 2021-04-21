@@ -1,16 +1,16 @@
 from collections import OrderedDict
 from .utils import run_cmd, add_arguments_to_self
 class fasta:
-    """
-    Class to represent fasta seuqnces in a python dict.
+    """Class to represent fasta seuqnces in a python dict."""
 
-    Args:
-        filename(str): Location of the fasta file
-
-    Returns:
-        fasta: A fasta class object
-    """
     def __init__(self,filename):
+        """
+        Args:
+            filename(str): Location of the fasta file
+
+        Returns:
+            fasta: A fasta class object
+        """
         fa_dict = OrderedDict()
         seq_name = ""
         self.fa_file = filename
@@ -33,8 +33,8 @@ class fasta:
         self.sum_length = sum_length
         self.fa_dict = result
     def get_ref_variants(self,refseq,prefix,file_prefix=None):
-        add_arguments_to_self(self,locals())
-        if self.file_prefix==None:
-            self.file_prefix=prefix
+        self.refseq = refseq
+        self.prefix = prefix
+        self.file_prefix = file_prefix if file_prefix else prefix
         run_cmd("minimap2 %(refseq)s %(fa_file)s --cs | sort -k6,6 -k8,8n | paftools.js call -l 100 -L 100 -f %(refseq)s -s %(prefix)s - | bcftools view -Oz -o %(file_prefix)s.vcf.gz" % vars(self))
         return "%s.vcf.gz" % self.file_prefix

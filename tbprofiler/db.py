@@ -2,7 +2,6 @@ import csv
 import json
 import re
 from collections import defaultdict
-from shutil import copyfile
 import subprocess
 import os.path
 import sys
@@ -107,10 +106,10 @@ def parse_mutation(mut,gene,fasta_dict,gene_info):
         strand = gene_info[gene]["strand"]
 
         if strand == "+":
-            chr_pos = gene_info[gene]["start"] - (gene_info[gene]["gene_start"] - nt_pos)
+            # chr_pos = gene_info[gene]["start"] - (gene_info[gene]["gene_start"] - nt_pos)
             return ["%s%s>%s" % (nt_pos,ref_nt,alt_nt)]
         else:
-            chr_pos = gene_info[gene]["end"] + (gene_info[gene]["gene_end"] - nt_pos)
+            # chr_pos = gene_info[gene]["end"] + (gene_info[gene]["gene_end"] - nt_pos)
             return ["%s%s>%s" % (nt_pos,revcom(ref_nt),revcom(alt_nt))]
     ## ncRNA Mutation
     ## r.514a>c
@@ -227,11 +226,11 @@ def create_db(args):
     bed_file = "%s.bed" % args.prefix
     json_file = "%s.dr.json" % args.prefix
     version_file = "%s.version.json" % args.prefix
-    conf = {
-        "gff": os.path.abspath(gff_file), "ref": os.path.abspath(genome_file),
-        "ann": os.path.abspath(ann_file), "barcode": os.path.abspath(barcode_file),
-        "bed": os.path.abspath(bed_file), "json_db": os.path.abspath(json_file)
-    }
+    # conf = {
+    #     "gff": os.path.abspath(gff_file), "ref": os.path.abspath(genome_file),
+    #     "ann": os.path.abspath(ann_file), "barcode": os.path.abspath(barcode_file),
+    #     "bed": os.path.abspath(bed_file), "json_db": os.path.abspath(json_file)
+    # }
     version = {"name":args.prefix}
     if not args.custom:
         for l in subprocess.Popen("git log | head -4".split(), stdout=subprocess.PIPE).stdout:

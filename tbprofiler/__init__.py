@@ -1,8 +1,13 @@
+"""
+A set of functions to transform pathogen-profiler results
+into tb-profiler output
+"""
+
 # from .pdf import *
 # from .text import *
-from .reformat import *
+# from .reformat import *
 # from .collate import *
-from .utils import *
+# from .utils import *
 # from .db import *
 import os
 _ROOT = os.path.abspath(os.path.dirname(__file__))

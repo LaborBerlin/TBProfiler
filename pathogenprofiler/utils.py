@@ -129,7 +129,7 @@ def revcom(s):
 
 
 def stdev(arr):
-    """Calculate standard deviation"""
+    """Calculate standard deviation."""
     mean = sum(arr)/len(arr)
     return math.sqrt(sum([(x-mean)**2 for x in arr])/len(arr))
 

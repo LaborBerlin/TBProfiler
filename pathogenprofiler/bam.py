@@ -4,7 +4,6 @@ from collections import defaultdict
 
 
 class bam:
-
     """A class to perform operations on BAM files such as SNP calling."""
 
     def __init__(self,bam_file,prefix,platform,threads=1):
@@ -24,7 +23,7 @@ class bam:
         index_bam(bam_file,threads=threads)
 
     def run_delly(self):
-        stdout,stderr = run_cmd("delly call -t DEL -g %(ref_file)s %(bam_file)s -o %(prefix)s.delly.bcf" % vars(self),terminate_on_error=False)
+        _,stderr = run_cmd("delly call -t DEL -g %(ref_file)s %(bam_file)s -o %(prefix)s.delly.bcf" % vars(self),terminate_on_error=False)
         if "not enough data to estimate library parameters" in stderr:
             return None
         else:

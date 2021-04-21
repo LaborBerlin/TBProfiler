@@ -5,7 +5,7 @@ class fasta:
     """Class to represent fasta seuqnces in a python dict."""
 
     def __init__(self,filename):
-    
+
         """
         Args:
             filename(str): Location of the fasta file

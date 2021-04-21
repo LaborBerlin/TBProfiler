@@ -6,6 +6,8 @@ import sys
 from datetime import datetime
 from .utils import revcom, cmd_out, run_cmd
 
+chr_name = "Chromosome"
+
 def fa2dict(filename):
     fa_dict = {}
     seq_name = ""
@@ -244,10 +246,9 @@ def create_db(args):
 
     json.dump(version,open(version_file,"w"))
     open(genome_file,"w").write(">%s\n%s\n" % (chr_name,fasta_dict["Chromosome"]))
-    cmd = "sed 's/Chromosome/%s/g' genome.gff > %s" % (chr_name,gff_file)
-    run_cmd(cmd.split(),shell=True)
-    cmd = "sed 's/Chromosome/%s/g' barcode.bed > %s" % (chr_name,barcode_file)
-    run_cmd(cmd.split(),shell=True)
+    
+    run_cmd("sed 's/Chromosome/%s/g' genome.gff > %s" % (chr_name,gff_file))
+    run_cmd("sed 's/Chromosome/%s/g' barcode.bed > %s" % (chr_name,barcode_file))
     write_gene_pos("genes.txt",list(locus_tag_to_drug_dict.keys()),ann_file)
     write_bed(locus_tag_to_drug_dict,gene_info,bed_file,chr_name)
     json.dump(db,open(json_file,"w"))

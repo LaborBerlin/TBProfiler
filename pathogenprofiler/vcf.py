@@ -19,11 +19,9 @@ def parse_mutation(x):
     return change_num,ref_aa,alt_aa
 
 class vcf:
-
     """Class to represent VCF file."""
 
     def __init__(self,filename,prefix=None,threads=1):
-        
         """
         Args:
             filename(str) = Name of VCF file

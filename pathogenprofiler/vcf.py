@@ -19,13 +19,21 @@ def parse_mutation(x):
     return change_num,ref_aa,alt_aa
 
 class vcf:
-    """
-    Class to represent VCF file
-    filename = Name of VCF file
-    prefix = Prefix of files created on running methods (optional)
-    threads = Number of therads (optional)
-    """
+
+    """Class to represent VCF file."""
+
     def __init__(self,filename,prefix=None,threads=1):
+        
+        """
+        Args:
+            filename(str) = Name of VCF file
+            prefix(str) = Prefix of files created on running methods (optional)
+            threads(int) = Number of therads (optional)
+        
+        Returns:
+            A vcf class object
+        """
+
         self.samples = []
         add_arguments_to_self(self,locals())
         if prefix==None:
@@ -99,7 +107,7 @@ class vcf:
             for i,j in enumerate(range(4,csq_start_column)):
                 try:
                     annotations[annotations_types[i]] = float(row[j])
-                except:
+                except ValueError:
                     annotations[annotations_types[i]] = None
             if chrom in ann and pos in ann[chrom]:
                 ann_pos = int(ann[chrom][pos][1])
@@ -167,7 +175,7 @@ class vcf:
                     else:
                         variants[sample].append({"gene_id":gene_id,"gene_name":gene_name,"chr":chrom,"genome_pos":pos,"type":info[0],"change":info[6],"freq":adr[call2],"nucleotide_change":info[6], "variant_annotations":annotations})
                 elif "synonymous" in info[0] or info[0] == "stop_retained":
-                    change_num,ref_nuc,alt_nuc =  parse_mutation(info[6])
+                    ref_nuc,alt_nuc =  parse_mutation(info[6])[1:]
                     change = "%s%s>%s" % (ann_pos,ref_nuc,alt_nuc) if ann_pos else "%s%s>%s" % (pos,ref_nuc,alt_nuc)
                     variants[sample].append({"gene_id":gene_id,"gene_name":gene_name,"chr":chrom,"genome_pos":pos,"type":info[0],"change":change,"freq":adr[call2],"nucleotide_change":info[6], "variant_annotations":annotations})
                 elif info[0] == "non_coding" or info[0] == "splice_region" or info[0] == "3_prime_utr":
@@ -192,7 +200,7 @@ class vcf:
             alleles = [row[2]]+alts
             for i in range(len(self.samples)):
                 calls,ad = row[i+4].split(":")
-                call1,call2 = calls.split("/") if "/" in calls else calls.split("|")
+                # call1,call2 = calls.split("/") if "/" in calls else calls.split("|")
                 if calls=="N/N":
                     raw_variants[row[0]][row[1]][self.samples[i]]["N"] = 1.0
                     continue

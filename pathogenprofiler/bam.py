@@ -164,7 +164,7 @@ class bam:
         else:
             return self.region_fraction
 
-    def get_missing_genomic_positions(self,cutoff=10):
+    def get_missing_genomic_positions(self,bed_file,cutoff=10):
         if not hasattr(self,"genome_coverage"):
-            self.get_region_coverage()
+            self.get_region_coverage(bed_file)
         return [x[0] for x in self.genome_coverage if x[1]<cutoff]

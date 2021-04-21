@@ -1,9 +1,11 @@
 from collections import OrderedDict
-from .utils import run_cmd, add_arguments_to_self
+from .utils import run_cmd
 class fasta:
+
     """Class to represent fasta seuqnces in a python dict."""
 
     def __init__(self,filename):
+    
         """
         Args:
             filename(str): Location of the fasta file
@@ -11,6 +13,7 @@ class fasta:
         Returns:
             fasta: A fasta class object
         """
+    
         fa_dict = OrderedDict()
         seq_name = ""
         self.fa_file = filename

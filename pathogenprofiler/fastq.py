@@ -4,16 +4,20 @@ from .utils import filecheck, add_arguments_to_self, run_cmd,bwa_index,bwa2_inde
 
 
 class fastq:
+
     """
     Class to hold fastq file and methods.
     Methods include trimming and mapping to a reference genome
     """
+
     def __init__(self,r1,r2=None,r3=None):
+
         """
         r1 = Forward reads
         r2 = Reverse reads (optional)
         r3 = Unpaired reads (optional)
         """
+
         add_arguments_to_self(self, locals())
         # Work out if it is paired end sequencing
         self.paired = True if (r1 and r2) else False
@@ -39,7 +43,7 @@ class fastq:
             return fastq("%(prefix)s_TU" % vars(self))
 
     def map_to_ref(self, ref_file, prefix, sample_name, aligner, platform, threads=1,markdup=True, max_mem="768M"):
-        """Mapping to a reference genome"""
+        """Mapping to a reference genome."""
         add_arguments_to_self(self, locals())
         self.aligner = aligner.lower()
         accepted_aligners = ["bwa","bwa-mem2","bowtie2","minimap2"]

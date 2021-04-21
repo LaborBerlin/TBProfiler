@@ -282,17 +282,13 @@ def bowtie_index(ref):
         run_cmd(cmd)
 
 def bwa2_index(ref):
-    """
-    Create BWA index for a reference
-    """
+    """Create bwa-mem2  index for a reference."""
     if nofile("%s.bwt.2bit.64"%ref):
         cmd = "bwa-mem2 index %s" % ref
         run_cmd(cmd)
 
 def bwa_index(ref):
-    """
-    Create BWA index for a reference
-    """
+    """Create BWA index for a reference."""
     if nofile("%s.bwt"%ref):
         cmd = "bwa index %s" % ref
         run_cmd(cmd)
@@ -381,7 +377,7 @@ def file_len(filename):
     """
     filecheck(filename)
     cmd = "wc -l %s" % filename
-    for l in subprocess.Popen(cmd.split(),stdout=subprocess.PIPE).stdout:
+    for l in cmd_out(cmd):
         res = l.rstrip().split()[0]
     return int(res)
 
@@ -391,7 +387,7 @@ def gz_file_len(filename):
     """
     filecheck(filename)
     cmd = "gunzip -c %s |wc -l" % filename
-    for l in subprocess.Popen(cmd.split(),stdout=subprocess.PIPE).stdout:
+    for l in cmd_out(cmd):
         res = l.rstrip().split()[0]
     return int(res)
 

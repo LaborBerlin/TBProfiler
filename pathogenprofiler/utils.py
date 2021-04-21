@@ -119,16 +119,17 @@ def get_seqs_from_bam(bamfile):
 
 
 def revcom(s):
-        """Return reverse complement of a sequence"""
-        def complement(s):
-                        basecomplement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A', 'N': 'N'}
-                        letters = list(s)
-                        letters = [basecomplement[base] for base in letters]
-                        return ''.join(letters)
-        return complement(s[::-1])
+    """Return reverse complement of a sequence."""
+    def complement(s):
+                    basecomplement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A', 'N': 'N'}
+                    letters = list(s)
+                    letters = [basecomplement[base] for base in letters]
+                    return ''.join(letters)
+    return complement(s[::-1])
 
 
 def stdev(arr):
+    """Calculate standard deviation"""
     mean = sum(arr)/len(arr)
     return math.sqrt(sum([(x-mean)**2 for x in arr])/len(arr))
 
@@ -260,11 +261,6 @@ def foldercheck(filename):
         exit(1)
     else:
         return filename
-
-def debug(s):
-    sys.stderr.write("#"*40+"\n")
-    sys.stderr.write("%s\n" % s)
-    sys.stderr.write("#"*40+"\n")
 
 def nofile(filename):
     """

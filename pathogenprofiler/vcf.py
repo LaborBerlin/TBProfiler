@@ -1,4 +1,5 @@
-from .utils import *
+import sys
+from .utils import cmd_out, run_cmd, add_arguments_to_self, index_bcf, tabix, rm_files, log, load_bed
 from .fasta import fasta
 from collections import defaultdict
 import re
@@ -18,6 +19,12 @@ def parse_mutation(x):
     return change_num,ref_aa,alt_aa
 
 class vcf:
+    """
+    Class to represent VCF file
+    filename = Name of VCF file
+    prefix = Prefix of files created on running methods (optional)
+    threads = Number of therads (optional)
+    """
     def __init__(self,filename,prefix=None,threads=1):
         self.samples = []
         add_arguments_to_self(self,locals())

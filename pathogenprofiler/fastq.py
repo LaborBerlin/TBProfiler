@@ -27,7 +27,7 @@ class fastq:
             self.files.append(r3)
 
     def trim(self, prefix, threads=1):
-        """Perform trimming"""
+        """Perform trimming."""
         add_arguments_to_self(self, locals())
         if self.paired:
             run_cmd("trimmomatic PE -threads %(threads)s -phred33 %(r1)s %(r2)s -baseout %(prefix)s LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36" % vars(self))

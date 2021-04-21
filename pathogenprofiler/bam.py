@@ -4,7 +4,7 @@ from collections import defaultdict
 
 
 class bam:
-    
+ 
     """A class to perform operations on BAM files such as SNP calling."""
 
     def __init__(self,bam_file,prefix,platform,threads=1):

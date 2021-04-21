@@ -12,7 +12,7 @@ class fasta:
         Returns:
             fasta: A fasta class object
         """
-    
+
         fa_dict = OrderedDict()
         seq_name = ""
         self.fa_file = filename

@@ -27,7 +27,7 @@ def write_gene_pos(infile,genes,outfile):
     with open(outfile, "w") as OUT:
         for l in open(infile):
             row = l.strip().split()
-            rv,gene,chr_start,chr_end,gene_start,gene_end = [row[0],row[1]]+[int(row[i]) for i in range(2,6)]
+            rv,_,chr_start,chr_end,gene_start,gene_end = [row[0],row[1]]+[int(row[i]) for i in range(2,6)]
             if rv in genes:
                 y = 0
                 for i, chr_pos in enumerate(range(chr_start, chr_end+1)):
@@ -246,7 +246,7 @@ def create_db(args):
 
     json.dump(version,open(version_file,"w"))
     open(genome_file,"w").write(">%s\n%s\n" % (chr_name,fasta_dict["Chromosome"]))
-    
+
     run_cmd("sed 's/Chromosome/%s/g' genome.gff > %s" % (chr_name,gff_file))
     run_cmd("sed 's/Chromosome/%s/g' barcode.bed > %s" % (chr_name,barcode_file))
     write_gene_pos("genes.txt",list(locus_tag_to_drug_dict.keys()),ann_file)

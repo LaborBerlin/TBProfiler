@@ -294,9 +294,7 @@ def bwa_index(ref):
         run_cmd(cmd)
 
 def run_cmd(cmd,verbose=1,target=None,terminate_on_error=True):
-    """
-    Wrapper to run a command using subprocess with 3 levels of verbosity and automatic exiting if command failed
-    """
+    """Wrapper to run a command using subprocess with 3 levels of verbosity and automatic exiting if command failed."""
     if target and filecheck(target): return True
     cmd = "set -u pipefail; " + cmd
     if verbose>0:

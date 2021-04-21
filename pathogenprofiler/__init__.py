@@ -5,7 +5,7 @@ script which profiles Pathogen NGS data.
 """
 
 from .profiler import bam_profiler
-from .bam import bam 
+from .bam import bam
 from .fasta import fasta
 from .fastq import fastq
 

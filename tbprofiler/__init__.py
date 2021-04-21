@@ -1,7 +1,4 @@
-"""
-A set of functions to transform pathogen-profiler results
-into tb-profiler output
-"""
+"""A set of functions to transform pathogen-profiler results into tb-profiler output"""
 
 from .pdf import write_pdf
 from .text import write_text

@@ -23,12 +23,12 @@ class vcf:
 
     def __init__(self,filename,prefix=None,threads=1):
         """The constructor for the vcf class
-        
+
         Args:
             filename(str) = Name of VCF file
             prefix(str) = Prefix of files created on running methods (optional)
             threads(int) = Number of therads (optional)
-        
+
         Returns:
             A vcf class object
         """
@@ -263,8 +263,19 @@ class vcf:
         return found_annotations
 
 class delly_bcf(vcf):
+    
+    """Class to interface with delly bcfs"""
+
     def __init__(self,filename):
-         vcf.__init__(self,filename)
+        """Constructor for delly_bcf class
+
+        Args:
+            filename(str): Location of the bcf file
+
+        Returns:
+            delly_bcf: A delly_bcf class object
+        """
+        vcf.__init__(self,filename)
     def get_robust_calls(self):
         results = []
         for l in cmd_out("bcftools query -f '%%CHROM\\t%%POS\\t[%%END\\t%%GT\\t%%DR\\t%%DV\\t%%RR\\t%%RV]\\n' %(filename)s" % vars(self)):

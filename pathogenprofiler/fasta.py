@@ -1,6 +1,7 @@
 from collections import OrderedDict
 from .utils import run_cmd
 class fasta:
+
     """Class to represent fasta seuqnces in a python dict."""
 
     def __init__(self,filename):
@@ -12,7 +13,6 @@ class fasta:
         Returns:
             fasta: A fasta class object
         """
-
         fa_dict = OrderedDict()
         seq_name = ""
         self.fa_file = filename

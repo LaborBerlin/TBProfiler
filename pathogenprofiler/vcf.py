@@ -22,7 +22,8 @@ class vcf:
     """Class to represent VCF file."""
 
     def __init__(self,filename,prefix=None,threads=1):
-        """
+        """The constructor for the vcf class
+        
         Args:
             filename(str) = Name of VCF file
             prefix(str) = Prefix of files created on running methods (optional)

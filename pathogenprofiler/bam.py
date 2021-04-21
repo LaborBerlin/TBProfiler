@@ -7,7 +7,8 @@ class bam:
     """A class to perform operations on BAM files such as SNP calling."""
 
     def __init__(self,bam_file,prefix,platform,threads=1):
-        """
+        """The contructor for the bam class
+        
         Args:
             bam_file(str): Location of the fasta file
             prefix(str): Prefix for files resulting from running methods

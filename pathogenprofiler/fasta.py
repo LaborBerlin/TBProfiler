@@ -1,12 +1,11 @@
 from collections import OrderedDict
 from .utils import run_cmd
 class fasta:
-
     """Class to represent fasta seuqnces in a python dict."""
 
     def __init__(self,filename):
+        """The constructor for the fasta class
 
-        """
         Args:
             filename(str): Location of the fasta file
 

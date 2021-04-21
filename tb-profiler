@@ -284,13 +284,8 @@ def main_reformat(args):
     else:
         conf = get_conf_dict(sys.base_prefix+"/share/tbprofiler/%s" % args.db)
     args.prefix = results["id"]
-    tex_output = args.prefix+".results.tex"
     csv_output = args.prefix+".results.csv"
     text_output = args.prefix+".results.txt"
-    # if args.pdf:
-    #     tbp.write_tex(results,conf,tex_output)
-    #     pp.run_cmd("pdflatex %s"%tex_output,verbose=1)
-    #     pp.rm_files([tex_output, args.prefix+".results.aux",args.prefix+".results.log"])
     if args.txt:
         tbp.write_text(results,conf,text_output)
     if args.csv:
@@ -315,16 +310,11 @@ def main_fasta_profile(args):
     results["pipeline"] = {"mapper":"N/A","variant_caller":"paftools.js"}
 
     json_output = args.dir+"/results/"+args.prefix+".results.json"
-    tex_output = args.dir+"/results/"+args.prefix+".results.tex"
     text_output = args.dir+"/results/"+args.prefix+".results.txt"
     csv_output = args.dir+"/results/"+args.prefix+".results.csv"
 
     json.dump(results,open(json_output,"w"))
     extra_columns = [x.lower() for x in args.add_columns.split(",")] if args.add_columns else []
-    # if args.pdf:
-    #     tbp.write_tex(results,conf,tex_output,extra_columns)
-    #     pp.run_cmd("pdflatex %s"%tex_output,verbose=1)
-    #     pp.rm_files([tex_output, args.dir+"/"+args.prefix+".results.aux",args.dir+"/"+args.prefix+".results.log"])
     if args.txt:
         tbp.write_text(results,conf,text_output,extra_columns,reporting_af=0.7)
     if args.csv:
@@ -390,16 +380,11 @@ def main_vcf_profile(args):
         results["pipeline"] = {"mapper": "N/A","variant_caller":"N/A"}
 
         json_output = args.dir+"/results/"+sample_name+".results.json"
-        tex_output = args.dir+"/results/"+sample_name+".results.tex"
         text_output = args.dir+"/results/"+sample_name+".results.txt"
         csv_output = args.dir+"/results/"+sample_name+".results.csv"
 
         json.dump(results,open(json_output,"w"))
         extra_columns = [x.lower() for x in args.add_columns.split(",")] if args.add_columns else []
-        # if args.pdf:
-        #     tbp.write_tex(results,conf,tex_output,extra_columns)
-        #     pp.run_cmd("pdflatex %s"%tex_output,verbose=1)
-        #     pp.rm_files([tex_output, args.dir+"/"+args.prefix+".results.aux",args.dir+"/"+args.prefix+".results.log"])
         if args.txt:
             tbp.write_text(results,conf,text_output,extra_columns)
         if args.csv:
